@@ -2,9 +2,11 @@
 
 <img src="https://github.com/MetrolistGroup/Metrolist/blob/main/fastlane/metadata/android/en-US/images/icon.png" alt="Metrolist app icon" width="200" />
 
-# Metrolist
+# Brimaplay
 
 ### YouTube Music client for Android
+
+> Brimaplay is a custom build based on the open-source [Metrolist](https://github.com/MetrolistGroup/Metrolist) project. All credit for the underlying app goes to the Metrolist team.
 
 <br/>
 
