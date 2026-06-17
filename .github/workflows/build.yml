@@ -21,6 +21,8 @@ jobs:
     name: Build Release (${{ matrix.variant }})
     if: github.actor != 'dependabot[bot]' && github.actor != 'renovate[bot]'
     runs-on: ubuntu-latest
+    env:
+      KEYSTORE: ${{ secrets.KEYSTORE }}
 
     strategy:
       matrix:
@@ -61,6 +63,7 @@ jobs:
           LASTFM_SECRET: ${{ secrets.LASTFM_SECRET }}
 
       - name: Sign APK
+        if: env.KEYSTORE != ''
         uses: ilharp/sign-android-release@v2.0.0
         with:
           releaseDir: app/build/outputs/apk/${{ matrix.variant }}/release/
@@ -71,6 +74,7 @@ jobs:
           buildToolsVersion: 35.0.0
 
       - name: Move signed APK
+        if: env.KEYSTORE != ''
         run: |
           OUTPUT_DIR="app/build/outputs/apk/${{ matrix.variant }}/release"
           mkdir -p "$OUTPUT_DIR/out"
@@ -82,6 +86,7 @@ jobs:
           find "$OUTPUT_DIR" -name "*-signed.apk" -o -name "*-unsigned-signed.apk" | xargs -I{} mv {} "$OUTPUT_DIR/out/$TARGET_NAME"
 
       - name: Upload Signed APK
+        if: env.KEYSTORE != ''
         uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.variant == 'gms' && 'app-with-Google-Cast' || 'app-release' }}
@@ -91,6 +96,8 @@ jobs:
     name: Build Debug (${{ matrix.variant }})
     if: github.actor != 'dependabot[bot]' && github.actor != 'renovate[bot]'
     runs-on: ubuntu-latest
+    env:
+      DEBUG_KEYSTORE: ${{ secrets.DEBUG_KEYSTORE }}
 
     strategy:
       matrix:
@@ -121,6 +128,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Restore Persistent Keystore
+        if: env.DEBUG_KEYSTORE != ''
         run: |
           echo "${{ secrets.DEBUG_KEYSTORE }}" | base64 -d > ./app/persistent-debug.keystore
 
