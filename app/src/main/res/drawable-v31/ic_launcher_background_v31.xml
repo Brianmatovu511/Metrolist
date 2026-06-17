@@ -1,7 +1,8 @@
+<!-- Brimaplay brand gradient (violet -> magenta). -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <gradient
         android:angle="45.0"
-        android:endColor="@android:color/system_accent2_400"
-        android:startColor="@android:color/system_accent1_800"
+        android:startColor="#FF7C3AED"
+        android:endColor="#FFDB2777"
         android:type="linear" />
 </shape>
