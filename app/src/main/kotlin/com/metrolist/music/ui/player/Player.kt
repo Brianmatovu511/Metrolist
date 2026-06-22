@@ -235,7 +235,7 @@ fun BottomSheetPlayer(
 
     val playerBackground by rememberEnumPreference(
         key = PlayerBackgroundStyleKey,
-        defaultValue = PlayerBackgroundStyle.DEFAULT,
+        defaultValue = PlayerBackgroundStyle.GRADIENT,
     )
     val playerButtonsStyle by rememberEnumPreference(
         key = PlayerButtonsStyleKey,
@@ -326,7 +326,7 @@ fun BottomSheetPlayer(
     val isMuted by playerConnection.isMuted.collectAsStateWithLifecycle()
 
     val sliderStyle by rememberEnumPreference(SliderStyleKey, SliderStyle.DEFAULT)
-    val squigglySlider by rememberPreference(SquigglySliderKey, defaultValue = false)
+    val squigglySlider by rememberPreference(SquigglySliderKey, defaultValue = true)
 
     // Listen Together state (reactive)
     val listenTogetherManager = LocalListenTogetherManager.current

@@ -180,7 +180,7 @@ fun AppearanceSettings(
     val (miniPlayerBackground, onMiniPlayerBackgroundChange) =
         rememberEnumPreference(
             MiniPlayerBackgroundStyleKey,
-            defaultValue = MiniPlayerBackgroundStyle.DEFAULT,
+            defaultValue = MiniPlayerBackgroundStyle.GRADIENT,
         )
 
     val availableMiniPlayerBackgroundStyles =
@@ -208,7 +208,7 @@ fun AppearanceSettings(
     val (playerBackground, onPlayerBackgroundChange) =
         rememberEnumPreference(
             PlayerBackgroundStyleKey,
-            defaultValue = PlayerBackgroundStyle.DEFAULT,
+            defaultValue = PlayerBackgroundStyle.GRADIENT,
         )
 
     val (defaultOpenTab, onDefaultOpenTabChange) =
